@@ -1,6 +1,3 @@
-#아이디의 길이는 3~15
-#알파벳 소문자, 숫자, -, _, .    but . 은 마지막에 사용불가능 연속 사용불가능
-
 def solution(lottos, win_nums):
     answer = [0] * 2
     zero_num = lottos.count(0)
