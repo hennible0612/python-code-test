@@ -1,31 +1,43 @@
-# This is a sample Python script.
+def solution(lottos, win_nums):
+    answer = [0] * 2
+    zero_num = lottos.count(0)
+    counter = 0  # 똑같은 숫자의 갯수
+    for i in win_nums:
+        if i in lottos:
+            counter += 1
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-import collections
 
-def solution(id_list, report, k):
-    report = set(report)  # 신고 리스트 중복제거
-    reported_dict = dict.fromkeys(id_list, 0)
-    answer = [0] * len(id_list)  # id 길이만큼 배열초기화
+    if zero_num == 6:
+        answer = [1,6]
+    elif counter == 0 and zero_num ==0:
+        answer = [6,6]
+    elif counter == 6 :
+        answer = [1,1]
+    else:
+        answer = [7-(zero_num+counter), 7-counter]
 
-    for user in report:  # 신고 목록 정리
-        reporter, reported = user.split()
-        reported_dict[reported] = reported_dict[reported] + 1
 
-    for user in report:
-        reporter, reported = user.split()
-        if (reported_dict[reported] >= k):  # 신고 목록에서 k 보다 크거나 같으면
-            index = id_list.index(reporter)  # 신고한 유저의 배열 위치
-            answer[index] = answer[index] + 1
     return answer
 
 
+# 1
+# ~45
+# 6
 
-id_list = ["muzi", "frodo", "apeach", "neo"]
-report = ["muzi frodo", "muzi neo", "apeach frodo", "apeach muzi", "frodo neo"]
-k = 2
+# lottos = [44, 1, 0, 0, 31, 25]
+# win_nums = [31, 10, 45, 1, 6, 19]
 
-solution(id_list, report, k)
+# lottos = [0, 0, 0, 0, 0, 0]
+# win_nums = [38, 19, 20, 40, 15, 25]
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+# lottos = [45, 4, 35, 20, 3, 9]
+# win_nums = [20, 9, 3, 45, 4, 35]
+
+lottos = [1, 2, 6, 9, 10, 18]
+win_nums = [20, 9, 3, 45, 4, 35]
+
+# [3, 5]
+# [1, 6]
+# [1, 1]
+
+solution(lottos, win_nums)
