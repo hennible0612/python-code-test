@@ -1,22 +1,20 @@
 #아이디의 길이는 3~15
 #알파벳 소문자, 숫자, -, _, .    but . 은 마지막에 사용불가능 연속 사용불가능
 
-def solution(lottos, win_nums):
-    answer = [0] * 2
-    zero_num = lottos.count(0)
-    counter = 0  # 똑같은 숫자의 갯수
-    for i in win_nums:
-        if i in lottos:
-            counter += 1
+def solution(new_id):
+    answer = ""
+    temp = ""
+    # 1단계 소문자
+    temp = new_id.lower()
+    # 2단계 특수문자 제거
+    for i in new_id:
+        if i.isalnum() or i in '-_.':
+            answer += i
 
-    if zero_num == 6:
-        answer = [1,6]
-    elif counter == 0 and zero_num ==0:
-        answer = [6,6]
-    elif counter == 6 :
-        answer = [1,1]
-    else:
-        answer = [7-(zero_num+counter), 7-counter]
+
+    print(answer)
+
+
 
     return answer
 
@@ -24,4 +22,5 @@ def solution(lottos, win_nums):
 lottos = [1, 2, 6, 9, 10, 18]
 win_nums = [20, 9, 3, 45, 4, 35]
 
-solution(lottos, win_nums)
+solution("...!@BaT#*..y.abcdefghijklm")
+# solution("ABCDEFG")
