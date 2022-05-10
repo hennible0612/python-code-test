@@ -1,26 +1,26 @@
-#아이디의 길이는 3~15
-#알파벳 소문자, 숫자, -, _, .    but . 은 마지막에 사용불가능 연속 사용불가능
+# 집합은 기본적으로 리스트 혹은 문자열을 이용해서 만들 수 있다
+# 중복을 허용하지 않는다.
+# 순서가 없다.
 
-def solution(new_id):
-    answer = ""
-    temp = ""
-    # 1단계 소문자
-    temp = new_id.lower()
-    # 2단계 특수문자 제거
-    for i in new_id:
-        if i.isalnum() or i in '-_.':
-            answer += i
+# 집합 선언
+data = (set([1, 1, 2, 2, 3, 3, 4, 4, 5, 5]))
+print(data)
+data = {1, 1, 2, 2, 3, 3, 4, 4, 5, 5}
+print(data)
 
+print("-" * 100)
+# 집합 자료형의 연산
+a = set([1, 2, 3, 4, 5])
+b = set([3, 4, 5, 6, 7])
+print(a | b)  # 합
+print(a & b)  # 교
+print(a - b)  # 차
 
-    print(answer)
+# 새로운 원소 추가
+a.add(3)
 
+# 새로운 원소 여러개 추가
+a.update([5, 6])
 
-
-    return answer
-
-
-lottos = [1, 2, 6, 9, 10, 18]
-win_nums = [20, 9, 3, 45, 4, 35]
-
-solution("...!@BaT#*..y.abcdefghijklm")
-# solution("ABCDEFG")
+# 특정한 값을 갖는 원소 삭제
+a.remove(3)
