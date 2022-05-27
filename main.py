@@ -1,9 +1,39 @@
-array = [7, 5, 9, 0, 3, 1, 6, 2, 9, 1, 4, 8, 0, 5, 2]
+# import sys
+# array = list(map(int, sys.stdin.readline().split()))
+# print(array)
+#
+# array2 = set(map(int, input().split()))
+# print(array2)
+import sys
+sys.setrecursionlimit(10000)
 
-count = [0] * (max(array) + 1)
-for i in range(len(array)):
-    count[array[i]] += 1
+n, m = map(int, input().split())
 
-for i in range(len(count)):
-    for j in range(count[i]):
-        print(i, end=" ")
+list = [[] for _ in range(n + 1)]
+
+visited = [False] * int(n + 1)
+for _ in range(m):
+    a, b = map(int, input().split())
+    list[a].append(b)
+    list[b].append(a)
+
+for i in list:
+    i.sort()
+
+answer = 0
+
+def dfs(start):
+    visited[start] = True
+    for i in list[start]:
+        if not visited[i]:
+            dfs(i)
+    return 1
+
+for i in range(1, n + 1):
+
+    if visited[i]:
+        continue
+    else:
+        answer += dfs(i)
+
+print(answer)
