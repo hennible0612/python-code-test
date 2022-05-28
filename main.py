@@ -5,35 +5,37 @@
 # array2 = set(map(int, input().split()))
 # print(array2)
 import sys
+
 sys.setrecursionlimit(10000)
+dx = [-1, 0, 1, 0, -1, -1, 1, 1]
+dy = [0, 1, 0, -1, -1, 1, -1, 1]
 
-n, m = map(int, input().split())
 
-list = [[] for _ in range(n + 1)]
+def dfs(i, j):
+    for l in range(8):
+        x = i + dx[l]
+        y = j + dy[l]
+        if 0 <= x < m and 0 <= y < n and graph[x][y] == 1:
+            graph[x][y] = 0
+            dfs(x, y)
 
-visited = [False] * int(n + 1)
-for _ in range(m):
-    a, b = map(int, input().split())
-    list[a].append(b)
-    list[b].append(a)
 
-for i in list:
-    i.sort()
+answer_arr = []
+while True:
+    n, m = map(int, input().split())
+    graph = []
+    if n == 0 and m == 0:
+        break
 
-answer = 0
+    for _ in range(m):
+        graph.append(list(map(int, sys.stdin.readline().split())))
+    answer = 0
 
-def dfs(start):
-    visited[start] = True
-    for i in list[start]:
-        if not visited[i]:
-            dfs(i)
-    return 1
+    for i in range(m):
+        for j in range(n):
+            if graph[i][j] == 1:
+                answer += 1
+                graph[i][j] = 0
+                dfs(i, j)
 
-for i in range(1, n + 1):
-
-    if visited[i]:
-        continue
-    else:
-        answer += dfs(i)
-
-print(answer)
+    print(answer)
