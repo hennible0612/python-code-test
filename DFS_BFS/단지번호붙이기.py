@@ -1,5 +1,8 @@
 
 # https://www.acmicpc.net/problem/2667
+
+# n 이 y
+
 n = int(input())
 graph = []
 
