@@ -34,7 +34,7 @@ def fib(x):
         return d[x]
     d[x] = fib(x-1) + fib(x-2)
     return d[x]
-print(fib(99))
+print(fib(10))
 
 # 바텀업 다이나믹 프로그래밍
 d = [0] * 100
